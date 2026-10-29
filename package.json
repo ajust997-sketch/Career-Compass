@@ -1,0 +1,10 @@
+{
+  "name": "career-compass",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "bash scripts/build.sh",
+    "test": "node scripts/check.mjs && node scripts/check-lab.mjs"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "career-compass": {
+      "httpUrl": "https://best-career-compass.nik921463.chatgpt.site/mcp",
+      "trust": false,
+      "includeTools": [
+        "get_opportunity_status",
+        "refresh_opportunities"
+      ]
+    }
+  }
+}

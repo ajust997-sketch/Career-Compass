@@ -1,0 +1,16 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+const html=await readFile('src/app.html','utf8');
+const experience=(await readFile('src/experience.js','utf8'))+'\n'+(await readFile('src/paper-core.js','utf8'))+'\n'+(await readFile('src/next.js','utf8'))+'\n'+(await readFile('src/practice.js','utf8'));
+const css=(await readFile('src/app.css','utf8'))+'\n'+(await readFile('src/experience.css','utf8'))+'\n'+(await readFile('src/next.css','utf8'));
+const js=(await readFile('src/app.js','utf8')).replace('/*EXPERIENCE*/',()=>experience);
+const data=JSON.parse(await readFile('src/data.json','utf8'));
+Object.assign(data,JSON.parse(await readFile('src/lectures.json','utf8')),JSON.parse(await readFile('src/cutoffs.json','utf8')));
+Object.assign(data,JSON.parse(await readFile('src/new-data.json','utf8')));
+const goals=Object.fromEntries([...data.programs.map(x=>['course:'+x.id,x.name]),...data.careers.map(x=>['career:'+x.id,x.name]),...data.exams.map(x=>['exam:'+x.id,x.name])]);
+const complete=html.replace('/*APP_CSS*/',()=>css).replace('/*APP_DATA*/',()=>JSON.stringify(data).replace(/</g,'\\u003c')).replace('/*APP_JS*/',()=>js.replace(/<\/script/gi,'<\\/script'));
+const server='const GOAL_CATALOG='+JSON.stringify(goals)+';\n'+(await readFile('src/community-server.js','utf8'))+'\n'+(await readFile('src/server.js','utf8'));
+await writeFile('worker/index.js','// Assembled from src/ by scripts/assemble.mjs.\nconst HTML='+JSON.stringify(complete)+';\n'+server);
+await mkdir('standalone',{recursive:true});
+await writeFile('standalone/index.html',complete);
+await writeFile('standalone/worker.js','const HTML='+JSON.stringify(complete)+';\n'+server.replace("async function memberId(request){const id=request.headers.get('oai-authenticated-user-id');", "async function memberId(request){const id=null;"));
+console.log('Assembled Career Compass ('+Math.round(complete.length/1024)+' KB HTML)');

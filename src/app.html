@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Career Compass — Find your next chapter</title>
+  <meta name="description" content="Explore careers for your degree, compare pathways, prepare for exams and build a realistic weekly study plan.">
+  <meta name="theme-color" content="#f7f8fc">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23164e43'/%3E%3Cpath d='M28 11l-5 13-12 5 5-13z' fill='%23d6ef9c'/%3E%3Ccircle cx='20' cy='20' r='3' fill='%23164e43'/%3E%3C/svg%3E">
+  <style>/*APP_CSS*/</style>
+</head>
+<body>
+<div class="animated-bg" aria-hidden="true"><i class="glow glow-a"></i><i class="glow glow-b"></i><i class="glow glow-c"></i><div class="ambient-grid"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+<aside class="sidebar" id="sidebar">
+ <a class="brand" href="#overview" aria-label="Career Compass home"><span class="brand-icon"><svg viewBox="0 0 40 40" fill="none"><path d="M29 10 23 24 10 30l6-14z" fill="currentColor"/><circle cx="20" cy="20" r="3" fill="#164e43"/></svg></span><span>career<span class="brand-bottom">compass<span class="brand-dot">.</span></span></span></a>
+ <div class="nav-label" data-t="workspace">YOUR WORKSPACE</div>
+ <nav id="nav" aria-label="Main navigation"></nav>
+ <div class="sidebar-note"><div class="little-orbit"><span>↗</span></div><strong data-t="smallSteps">Small steps. Big futures.</strong><p data-t="sideNote">You don’t need to have it all figured out. Just a next step.</p><button class="text-btn" data-route="planner" data-t="makePlan">Make a plan →</button></div>
+ <div class="sidebar-bottom"><span class="avatar">N</span><div><strong data-t="yourWorkspace">Your workspace</strong><small data-t="deviceSaved">Saved on this device</small></div><button class="icon-btn" id="settings-button" aria-label="Edit study profile" data-icon="settings"></button></div>
+</aside>
+<div class="app-shell">
+ <header class="topbar"><div class="breadcrumb"><button class="icon-btn menu-button" id="menu-button" aria-label="Open menu" data-icon="menu"></button><span data-t="workspaceTitle">My workspace</span><span class="breadcrumb-sep">/</span><strong id="page-name">Overview</strong></div><div class="top-actions"><button class="theme-trigger" id="theme-button" aria-label="Choose a theme"><span data-icon="spark"></span>Themes</button><button class="icon-btn motion-button" id="motion-button" title="Pause decorative animation" aria-label="Toggle decorative animation" aria-pressed="false">Ⅱ</button><button class="search-trigger" id="search-button"><span data-icon="search"></span><span data-t="searchAnything">Search careers, exams…</span><kbd>/</kbd></button><button class="language-trigger" id="language-button"><span data-icon="globe"></span><span id="language-label">English</span><span class="chev">⌄</span></button><button class="icon-btn update-button" id="updates-button" aria-label="Open opportunity updates" data-icon="bell"><i></i></button><span class="avatar top-avatar">N</span></div></header>
+ <main id="main" tabindex="-1"><div id="view"></div></main>
+ <footer><span>career compass<span class="brand-dot">.</span></span><p data-t="footer">A clearer path, one good decision at a time.</p><button class="text-btn" data-route="sources" data-t="sources">Sources & how this works</button></footer>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+<dialog id="detail-dialog" class="detail-dialog"><div id="detail-content"></div></dialog>
+<dialog id="profile-dialog" class="compact-dialog"><div class="modal-head"><div><span class="eyebrow" data-t="personalise">MAKE IT YOURS</span><h2 data-t="studyProfile">Your study profile</h2></div><button class="icon-btn close-dialog" aria-label="Close" data-icon="close"></button></div><form id="profile-form"><label for="profile-program" data-t="ugProgramme">Undergraduate programme</label><select id="profile-program"></select><label for="profile-year" data-t="studyYear">Year of study</label><select id="profile-year"><option value="1">Year 1</option><option value="2">Year 2</option><option value="3">Year 3</option><option value="4">Year 4</option><option value="5">Year 5 / internship</option><option value="6">Graduated</option></select><label for="profile-name" data-t="yourName">What should we call you?</label><input id="profile-name" maxlength="32" placeholder="Your first name" autocomplete="given-name"><p class="form-help" data-t="profileNote">Used to suggest related pathways. Exam eligibility still needs a check of the official rules.</p><button class="btn primary" type="submit" data-t="saveProfile">Save my profile</button></form></dialog>
+<dialog id="language-dialog" class="compact-dialog"><div class="modal-head"><div><span class="eyebrow">FEEL AT HOME</span><h2>Choose your language</h2></div><button class="icon-btn close-dialog" aria-label="Close" data-icon="close"></button></div><div class="language-options"><button data-lang="en"><strong>English</strong><span>English</span></button><button data-lang="hi"><strong>हिन्दी</strong><span>Hindi interface</span></button><button data-lang="hinglish"><strong>Hinglish</strong><span>Hindi, in English letters</span></button></div><div class="divider"></div><h3>Translate the full page</h3><p class="muted">Choose from 100+ languages with Google Translate. This external service requires internet access.</p><div id="google_translate_element"></div><p id="translate-status" class="form-help">Loading language service…</p><p class="form-help">If the service is unavailable, use your browser’s “Translate page” option. Check exam rules in the original language before applying.</p></dialog>
+<dialog id="theme-dialog" class="compact-dialog"><div id="theme-content"></div></dialog>
+<dialog id="video-dialog" class="video-dialog"><div id="video-content"></div></dialog>
+<dialog id="search-dialog" class="search-dialog"><div class="search-box"><span data-icon="search"></span><input id="global-search" type="search" placeholder="Try “GATE”, “designer” or “Python”…" aria-label="Search careers exams and resources"><button class="icon-btn close-dialog" aria-label="Close" data-icon="close"></button></div><div id="search-results"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>window.COMPASS_DATA=/*APP_DATA*/;</script>
+<script>/*APP_JS*/</script>
+</body></html>
