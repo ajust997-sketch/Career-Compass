@@ -3,8 +3,22 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/dev.mjs",
-    "build": "bash scripts/build.sh",
-    "test": "node scripts/check.mjs && node scripts/check-lab.mjs"
+    "dev": "node --env-file-if-exists=.env.local scripts/dev-vercel.mjs",
+    "build": "node scripts/assemble.mjs --vercel",
+    "test": "node scripts/check.mjs && node scripts/check-lab.mjs && node scripts/check-ai.mjs && node scripts/check-google-auth.mjs",
+    "build:sites": "bash scripts/build.sh",
+    "dev:sites": "node scripts/dev.mjs",
+    "test:vercel": "node scripts/check-vercel.mjs",
+    "test:all": "npm run test && npm run test:vercel",
+    "test:storage": "node scripts/check-redis.mjs"
+  },
+  "dependencies": {
+    "esbuild": "0.28.2",
+    "jose": "6.2.13",
+    "@vercel/functions": "3.10.4"
+  },
+  "version": "6.3.0",
+  "engines": {
+    "node": "24.x"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci",
+  "outputDirectory": "public",
+  "fluid": true,
+  "functions": {"api/app.js": {"maxDuration": 60}},
+  "rewrites": [
+    {"source": "/api/:path*", "destination": "/api/app?__cc_route=api/:path*"},
+    {"source": "/auth/google", "destination": "/api/app?__cc_route=auth/google"},
+    {"source": "/auth/google/:path*", "destination": "/api/app?__cc_route=auth/google/:path*"},
+    {"source": "/privacy", "destination": "/api/app?__cc_route=privacy"},
+    {"source": "/mcp", "destination": "/api/app?__cc_route=mcp"}
+  ],
+  "headers": [
+    {"source": "/(.*)", "headers": [
+      {"key":"X-Content-Type-Options", "value":"nosniff"},
+      {"key":"Referrer-Policy", "value":"strict-origin-when-cross-origin"},
+      {"key":"Permissions-Policy", "value":"camera=(), microphone=(), geolocation=()"}
+    ]}
+  ]
+}

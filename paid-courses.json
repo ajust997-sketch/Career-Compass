@@ -1,0 +1,200 @@
+{
+  "paidCoursesReviewedAt": "2026-10-31",
+  "paidCourses": [
+    {
+      "id": "python-angela",
+      "name": "100 Days of Code: The Complete Python Pro Bootcamp",
+      "subject": "Python",
+      "icon": "code",
+      "provider": "Udemy · The App Brewery",
+      "url": "https://www.udemy.com/course/100-days-of-code/",
+      "language": "English",
+      "level": "Beginner",
+      "access": "Paid course · check current price",
+      "tags": [
+        "coding",
+        "data",
+        "science"
+      ],
+      "why": "Consider this if you learn by making things and want a sequence of small Python projects.",
+      "learn": "Python foundations, automation, games, web apps and introductory data projects.",
+      "before": "A computer, internet access and time for regular coding practice. No previous programming is required.",
+      "preview": "https://www.appbrewery.com/",
+      "instructor": {
+        "name": "Dr. Angela Yu",
+        "initials": "AY",
+        "role": "Developer & lead instructor, The App Brewery",
+        "linkedin": "https://uk.linkedin.com/in/angela-yu1",
+        "bio": "Angela Yu moved from medicine into programming education and founded the London App Brewery. Her teaching grew from classroom workshops into online courses. Her project-based curriculum includes Python, web development and app development.",
+        "teaching": "Teaching documented by 2016",
+        "teachingNote": "Her July 2016 interview describes teaching in a London classroom. This is a documented milestone, not a claim that she first started that year.",
+        "milestones": [
+          "Medicine → programming education",
+          "London classroom workshops → online bootcamps",
+          "Project-based Python and app courses"
+        ],
+        "sources": [
+          {
+            "label": "Instructor biography",
+            "url": "https://www.udemy.com/course/100-days-of-code/"
+          },
+          {
+            "label": "Teaching milestone · 2016 interview",
+            "url": "https://medium.com/london-app-brewery/how-a-doctor-ran-a-tech-startup-while-working-80-hour-weeks-d47e7b4988cb"
+          },
+          {
+            "label": "App Brewery course catalogue",
+            "url": "https://www.appbrewery.com/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "web-hitesh",
+      "name": "Complete Web Development Course",
+      "subject": "Web development",
+      "icon": "code",
+      "provider": "Udemy · Hitesh Choudhary",
+      "url": "https://www.udemy.com/course/web-dev-master/",
+      "language": "English",
+      "level": "Beginner to intermediate",
+      "access": "Paid course · check current price",
+      "tags": [
+        "coding",
+        "web",
+        "software"
+      ],
+      "why": "Consider this for a broad path from building web pages to working on full-stack projects.",
+      "learn": "HTML, CSS, JavaScript, Tailwind, React, Node.js, databases, Git and deployment.",
+      "before": "A laptop or desktop and time to build alongside the lessons. Start with the foundations if you are new to coding.",
+      "preview": "https://www.udemy.com/course/web-dev-master/",
+      "instructor": {
+        "name": "Hitesh Choudhary",
+        "initials": "HC",
+        "role": "Coding educator & founder of LearnCodeOnline",
+        "linkedin": "https://www.linkedin.com/in/hiteshchoudhary",
+        "bio": "Hitesh Choudhary founded LearnCodeOnline, which was acquired, and previously worked as CTO at iNeuron and Senior Director at Physics Wallah. He now teaches programming through YouTube, Udemy and ChaiCode cohorts, and builds developer tools and open-source projects.",
+        "teaching": "Exact teaching start year not confirmed",
+        "teachingNote": "The reviewed official biographies do not state a teaching start year. His course mentions 15+ years of coding experience; coding experience is not the same as teaching experience.",
+        "milestones": [
+          "Founded LearnCodeOnline (later acquired)",
+          "Former CTO, iNeuron · former Senior Director, PW",
+          "YouTube, Udemy & ChaiCode education"
+        ],
+        "sources": [
+          {
+            "label": "Instructor biography",
+            "url": "https://www.udemy.com/user/hitesh-choudharycom/"
+          },
+          {
+            "label": "Personal website & LinkedIn link",
+            "url": "https://hiteshchoudhary.com/"
+          },
+          {
+            "label": "Course curriculum & experience claim",
+            "url": "https://www.udemy.com/course/web-dev-master/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ml-andrew",
+      "name": "Machine Learning Specialization",
+      "subject": "AI & machine learning",
+      "icon": "chip",
+      "provider": "Coursera · DeepLearning.AI & Stanford Online",
+      "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "language": "English",
+      "level": "Beginner",
+      "access": "Paid subscription / certificate track",
+      "tags": [
+        "data",
+        "computer-science",
+        "ml",
+        "ai",
+        "math"
+      ],
+      "why": "Consider this if you want a structured introduction to how machine learning models work, with Python exercises.",
+      "learn": "Regression, classification, neural networks, decision trees, clustering and recommender systems across three courses.",
+      "before": "Basic Python and school-level algebra are useful preparation. Review the provider’s current prerequisites and sample lessons.",
+      "preview": "https://www.coursera.org/specializations/machine-learning-introduction",
+      "instructor": {
+        "name": "Andrew Ng",
+        "initials": "AN",
+        "role": "AI educator · lead instructor with a teaching team",
+        "linkedin": "https://www.linkedin.com/in/andrewyng",
+        "bio": "Andrew Ng is a computer scientist and educator who co-founded Coursera and founded DeepLearning.AI. His career includes AI research at Stanford and work with Google Brain and Baidu. He leads this specialization alongside its other instructors.",
+        "teaching": "Open online ML course launched in 2011",
+        "teachingNote": "Coursera documents the 2011 launch of his Stanford online machine learning course. His university teaching predates this online milestone.",
+        "milestones": [
+          "Stanford machine learning teaching & research",
+          "2011 · open online machine learning course",
+          "2012 · co-founded Coursera; later founded DeepLearning.AI"
+        ],
+        "sources": [
+          {
+            "label": "Instructor & specialization",
+            "url": "https://www.coursera.org/specializations/machine-learning-introduction"
+          },
+          {
+            "label": "2011 teaching milestone & Coursera history",
+            "url": "https://blog.coursera.org/coursera-7th-year-anniversary/"
+          },
+          {
+            "label": "DeepLearning.AI biography",
+            "url": "https://www.deeplearning.ai/specializations/deep-learning/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "figma-daniel",
+      "name": "Figma UI UX Design Essentials",
+      "subject": "Design & UX",
+      "icon": "pen",
+      "provider": "Bring Your Own Laptop",
+      "url": "https://bringyourownlaptop.com/courses/figma-ux-essentials-beginners",
+      "language": "English",
+      "level": "Beginner",
+      "access": "Paid membership · check renewal terms",
+      "tags": [
+        "design",
+        "ui-ux",
+        "product",
+        "marketing"
+      ],
+      "why": "Consider this for a practical introduction to Figma and turning a design brief into an interactive prototype.",
+      "learn": "Personas, wireframes, typography, components, prototypes and handoff to developers.",
+      "before": "A computer and a Figma account. The course starts from the basics; no previous UX experience is assumed.",
+      "preview": "https://bringyourownlaptop.com/courses/figma-ux-essentials-beginners",
+      "instructor": {
+        "name": "Daniel Walter Scott",
+        "initials": "DS",
+        "role": "Founder & chief instructor, Bring Your Own Laptop",
+        "linkedin": "https://ie.linkedin.com/in/daniel-walter-scott",
+        "bio": "Daniel Walter Scott began in art and digital design before building Bring Your Own Laptop. He is an Adobe Certified Instructor who teaches design and digital media. His provider biography reports teaching awards at Adobe MAX, and his courses emphasise practical creative projects.",
+        "teaching": "14+ years teaching, per his Udemy biography",
+        "teachingNote": "This is the instructor’s published experience claim. The profile does not give an exact starting year, so no year is inferred from it.",
+        "milestones": [
+          "Art studies → digital and media design",
+          "Founded Bring Your Own Laptop",
+          "Adobe instructor & practical design educator"
+        ],
+        "sources": [
+          {
+            "label": "Official career biography",
+            "url": "https://bringyourownlaptop.com/bio/daniel-scott"
+          },
+          {
+            "label": "Teaching experience · instructor biography",
+            "url": "https://www.udemy.com/user/danielwalterscott/"
+          },
+          {
+            "label": "Course curriculum",
+            "url": "https://bringyourownlaptop.com/courses/figma-ux-essentials-beginners"
+          }
+        ]
+      }
+    }
+  ]
+}

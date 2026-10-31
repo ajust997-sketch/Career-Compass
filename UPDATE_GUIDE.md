@@ -1,3 +1,5 @@
+> Vercel users: follow VERCEL_SETUP.md and run `npm run build`. The guidance below describes the original Sites deployment.
+
 # Daily Career Compass update
 
 The Site is public for readers. Profiles, preferences, bookmarks and study plans remain in browser storage. Shared feeds are persisted in the BUCKET binding.

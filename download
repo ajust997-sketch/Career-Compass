@@ -1,0 +1,12 @@
+dist/
+node_modules/
+site.tar.gz
+
+standalone/
+.env
+.env.*
+!.env.example
+
+public/
+generated/
+.vercel/
