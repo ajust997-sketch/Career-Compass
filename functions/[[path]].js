@@ -94,7 +94,12 @@ async function withDeviceHistory(response) {
 export async function onRequest(context) {
   const env = { ...context.env, BUCKET: context.env.CC_KV ? kvBucket(context.env.CC_KV) : undefined };
   const ctx = { waitUntil: (p) => context.waitUntil(p), passThroughOnException() {} };
-  const response = await app.fetch(context.request, env, ctx);
   const path = new URL(context.request.url).pathname;
+  // Pages has no cron: refresh the opportunity feed in the background when it
+  // is opened (worker.js itself skips sources fetched in the last 6 hours).
+  if (path === "/api/opportunities" && env.BUCKET) {
+    context.waitUntil(app.scheduled({}, env, { waitUntil: (p) => context.waitUntil(Promise.resolve(p).catch(() => {})) }).catch(() => {}));
+  }
+  const response = await app.fetch(context.request, env, ctx);
   return context.request.method === "GET" && (path === "/" || path === "/index.html") ? withDeviceHistory(response) : response;
 }
