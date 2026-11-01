@@ -23,8 +23,8 @@ root source files ──node cf/build.mjs──▶ worker.js (+ index.html) ─�
 | --- | --- |
 | Page shell (HTML) | `app.html` |
 | Core app: routing, navigation, store, icons, helpers | `app.js` |
-| Front-end modules (concatenated in this order) | `experience.js`, `paper-core.js`, `next.js`, `practice.js`, `personal-ai.js`, `discovery.js`, `papers.js` |
-| Styles (same order) | `app.css`, `experience.css`, `next.css`, `personal-ai.css`, `discovery.css`, `papers.css` |
+| Front-end modules (concatenated in this order) | `experience.js`, `paper-core.js`, `next.js`, `practice.js`, `personal-ai.js`, `discovery.js`, `papers.js`, `layout.js` |
+| Styles (same order) | `app.css`, `experience.css`, `next.css`, `personal-ai.css`, `discovery.css`, `papers.css`, `layout.css` |
 | Content data (courses, careers, exams, lectures, cutoffs, paid courses) | `data.json`, `lectures.json`, `cutoffs.json`, `new-data.json`, `paid-courses.json` |
 | App server (APIs, Google sign-in, personal AI, community, opportunity feed) | `server.js`, `google-auth.js`, `ai-server.js`, `community-server.js` |
 | Mock paper parsing and scoring (shared by browser and server) | `paper-core.js` |
@@ -32,6 +32,7 @@ root source files ──node cf/build.mjs──▶ worker.js (+ index.html) ─�
 | Connect AI page (Gemini/Claude keys, reports) | `personal-ai.js` |
 | Sidebar groups | `discovery.js` (`renderNav`) |
 | College previous papers page (`#papers`) | `papers.js`, `papers.css` |
+| Page looks + rectangular blocks (loaded last). Overview has no welcome/hero. `LOOK_LEARN` routes get the course-catalogue look (blue, navy title band), `LOOK_PATH` routes (mock, resources, practice) get the learning-path look (gray canvas, slate/teal). Only applies with the calm theme | `layout.js`, `layout.css` |
 | Build script (file lists live here) | `cf/build.mjs` |
 | Cloudflare entry point (request router) | `functions/[[path]].js` |
 | Previous papers API (`/api/papers`) | `cf/papers-api.js` |
