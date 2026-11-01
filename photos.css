@@ -1,0 +1,17 @@
+/* Department photos (photos.js). The photo covers the old illustration; if it fails to load it is removed. */
+.topic-scene.has-photo{position:relative;overflow:hidden}
+.topic-scene.has-photo>.dept-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:5;display:block}
+.topic-scene.has-photo::after{content:"";position:absolute;inset:0;z-index:6;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.28));pointer-events:none}
+#view .course-card .topic-scene.has-photo{height:170px}
+.paid-course-cover.has-photo{position:relative;min-height:150px;align-items:flex-end;color:#fff;overflow:hidden}
+.paid-course-cover.has-photo>*:not(.dept-photo){position:relative;z-index:2}
+.paid-course-cover.has-photo>.dept-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.paid-course-cover.has-photo::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.6))}
+.paid-course-cover.has-photo .square-icon{background:rgba(255,255,255,.92);color:#21242c}
+.pp-card.has-photo{flex-wrap:nowrap;align-items:center}
+.pp-card.has-photo>.pp-photo{width:150px;height:100px;object-fit:cover;border-radius:6px;flex:0 0 150px;display:block}
+.pp-card.has-photo>div:first-of-type{flex:1;min-width:0}
+@media (max-width:640px){
+ .pp-card.has-photo{flex-wrap:wrap}
+ .pp-card.has-photo>.pp-photo{width:100%;height:150px;flex-basis:100%}
+}
