@@ -1,0 +1,103 @@
+/* Page looks + rectangular blocks. See layout.js for which routes get which look.
+   "learn": course-catalogue look inspired by Khan Academy course pages (original CSS).
+   "path":  learning-path look inspired by The Odin Project paths (original CSS).
+   Looks are scoped to the default calm theme so Minecraft / Among Us themes keep working. */
+
+/* ---------- 1. Rectangular blocks, every page ---------- */
+:root{--radius:8px}
+#view :is(.panel,.career-card,.exam-card,.course-card,.lecture-card,.recommend-card,.benefit-card,.update-card,.feed-card,.source-tile,.stat,.launch-card,.sector-door,.direction-banner,.mission-strip,.profile-bar,.callout,.question-card,.planner-settings,.plan-day,.milestone,.ai-provider-card,.paid-library-banner,.paid-library-note,.paid-course-card,.upload-zone,.media-card,.history-table,.sector-hero,.game-picker,.game-welcome,.empty,.focus-sprint,.resource-card,.salary-box,.archive-card,.topic-card,.result-hero,.review-question,.material-row,.learner-card,.ai-intro,.ai-connection,.ai-status,.cc-guide,.pp-text){border-radius:6px}
+#view :is(.btn,.chip,.tag,.input-wrap,input,select,textarea,.square-icon,.icon-btn){border-radius:4px}
+.lx-block,#view .career-hub,#view .learning-launch{display:block;background:#fff;border:1px solid var(--line);border-radius:6px;padding:24px;margin:0 0 20px}
+.lx-block>.section-head{padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#view .career-hub>.section-head,#view .learning-launch>.launch-heading{padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+#view .profile-bar,#view .direction-banner,#view .mission-strip,#view .stats{margin-bottom:20px}
+#view .overview-bottom{gap:20px}
+body[data-route=overview] #view>.fade-in>.profile-bar:first-child{margin-top:0}
+
+/* ---------- 2. "learn" look: courses, careers, exams, papers ---------- */
+[data-theme=calm][data-look=learn]{--bg:#f7f8fa;--paper:#fff;--ink:#21242c;--muted:#5f6167;--green:#1865f2;--accent:#dbe7ff;--line:#dbdcdd;--mint:#eef4ff;--font:'Lato','Noto Sans',system-ui,sans-serif;--heading:'Lato','Noto Sans',system-ui,sans-serif}
+[data-theme=calm][data-look=learn] h1,[data-theme=calm][data-look=learn] h2,[data-theme=calm][data-look=learn] h3,[data-theme=calm][data-look=learn] h4{letter-spacing:0;font-weight:700;color:#21242c}
+[data-theme=calm][data-look=learn] #view{font-size:15px}
+/* page title: a deep navy band */
+[data-theme=calm][data-look=learn] #view .page-heading{background:#0b2655;border-radius:6px;padding:28px 32px;margin-bottom:22px;align-items:center}
+[data-theme=calm][data-look=learn] #view .page-heading h1{color:#fff;font-size:32px;font-weight:900;letter-spacing:0}
+[data-theme=calm][data-look=learn] #view .page-heading p{color:#c9d5ee;font-size:15px}
+[data-theme=calm][data-look=learn] #view .page-heading .btn.outline{background:#fff;color:#0b2655;border-color:#fff}
+[data-theme=calm][data-look=learn] #view .page-heading .date-label{color:#c9d5ee}
+/* sidebar: blue rail on the active item */
+[data-theme=calm][data-look=learn] .nav-link.active{background:#eef4ff;color:#1865f2;border-radius:0 6px 6px 0;box-shadow:inset 4px 0 0 #1865f2}
+[data-theme=calm][data-look=learn] .nav-link:hover{color:#1865f2}
+/* section titles read like course units */
+[data-theme=calm][data-look=learn] #view .section-head h2,[data-theme=calm][data-look=learn] #view .launch-heading h2{font-size:21px}
+[data-theme=calm][data-look=learn] #view .eyebrow{color:#5f6167;font-size:11px;letter-spacing:.08em;font-weight:700}
+/* cards */
+[data-theme=calm][data-look=learn] #view :is(.career-card,.exam-card,.course-card,.recommend-card,.pp-card,.panel,.stat,.launch-card,.sector-door,.update-card,.paid-course-card,.question-card){background:#fff;border:1px solid #dbdcdd;box-shadow:none;transition:border-color .15s,box-shadow .15s}
+[data-theme=calm][data-look=learn] #view :is(.career-card,.exam-card,.course-card,.recommend-card,.pp-card,.launch-card,.sector-door,.paid-course-card):hover{border-color:#1865f2;box-shadow:0 0 0 1px #1865f2}
+[data-theme=calm][data-look=learn] #view :is(.career-card,.exam-card,.course-card,.recommend-card,.pp-card) h3{font-size:18px}
+[data-theme=calm][data-look=learn] #view :is(.career-card,.exam-card,.course-card,.recommend-card,.pp-card) p{color:#5f6167}
+[data-theme=calm][data-look=learn] #view .sector-door :is(h3,strong),[data-theme=calm][data-look=learn] #view .launch-card strong{color:#21242c}
+[data-theme=calm][data-look=learn] #view .square-icon{background:#eef4ff;color:#1865f2}
+[data-theme=calm][data-look=learn] #view .tag{background:#eef4ff;color:#1b50b3}
+/* buttons and links */
+[data-theme=calm][data-look=learn] #view .btn{font-size:14px;font-weight:700}
+[data-theme=calm][data-look=learn] #view :is(.btn.primary,.btn.lime){background:#1865f2;color:#fff;border-color:#1865f2}
+[data-theme=calm][data-look=learn] #view :is(.btn.primary,.btn.lime):hover{background:#1b50b3}
+[data-theme=calm][data-look=learn] #view .btn.outline{background:#fff;color:#1865f2;border-color:#9db9f0}
+[data-theme=calm][data-look=learn] #view .text-btn{color:#1865f2;font-size:13px;font-weight:700}
+[data-theme=calm][data-look=learn] #view .chip{border-color:#9db9f0;color:#1865f2;font-weight:700}
+[data-theme=calm][data-look=learn] #view .chip.active{background:#1865f2;color:#fff;border-color:#1865f2}
+[data-theme=calm][data-look=learn] #view :is(input,select,textarea,.input-wrap){border-color:#babec2;color:#21242c}
+[data-theme=calm][data-look=learn] #view :is(input,select,textarea):focus,[data-theme=calm][data-look=learn] #view .input-wrap:focus-within{outline:2px solid #1865f2;outline-offset:1px}
+[data-theme=calm][data-look=learn] #view .callout{background:#fff;border:1px solid #dbdcdd;border-left:4px solid #1865f2;color:#21242c}
+[data-theme=calm][data-look=learn] #view .callout.peach{border-left-color:#ffb100}
+/* coloured banners become calm, outlined units */
+[data-theme=calm][data-look=learn] #view :is(.direction-banner,.mission-strip,.paid-library-banner,.profile-bar){background:#fff;border:1px solid #dbdcdd;border-left:4px solid #1865f2}
+[data-theme=calm][data-look=learn] #view :is(.direction-banner,.paid-library-banner) h2{color:#21242c}
+[data-theme=calm][data-look=learn] #view .stat strong{color:#21242c;font-weight:900}
+
+/* ---------- 3. "path" look: mock lab, learning library, practice ---------- */
+[data-theme=calm][data-look=path]{--bg:#f9fafb;--paper:#fff;--ink:#1f2937;--muted:#4b5563;--green:#127369;--accent:#ccece6;--line:#e5e7eb;--mint:#effaf8;--font:'Inter',system-ui,sans-serif;--heading:'Inter',system-ui,sans-serif}
+[data-theme=calm][data-look=path] h1,[data-theme=calm][data-look=path] h2,[data-theme=calm][data-look=path] h3,[data-theme=calm][data-look=path] h4{letter-spacing:-.01em;font-weight:600;color:#1f2937}
+[data-theme=calm][data-look=path] #view{font-size:15px;color:#4b5563}
+/* centred page title with a quiet rule below */
+[data-theme=calm][data-look=path] #view .page-heading{flex-direction:column;align-items:center;text-align:center;padding:8px 0 22px;margin-bottom:24px;border-bottom:1px solid #e5e7eb}
+[data-theme=calm][data-look=path] #view .page-heading h1{font-size:30px;font-weight:600;letter-spacing:-.01em}
+[data-theme=calm][data-look=path] #view .page-heading p{font-size:16px;color:#4b5563;max-width:640px;margin-left:auto;margin-right:auto}
+/* sidebar */
+[data-theme=calm][data-look=path] .nav-link.active{background:#fff;color:#1f2937;box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);border-radius:6px}
+/* white cards on gray, header divided from the body */
+[data-theme=calm][data-look=path] #view :is(.panel,.lecture-card,.game-picker,.game-welcome,.upload-zone,.resource-card,.media-card,.paid-course-card,.paid-library-note,.review-question,.result-hero,.topic-card,.lx-block){background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04)}
+[data-theme=calm][data-look=path] #view .upload-zone{border-style:dashed;border-color:#cbd5e1;box-shadow:none}
+[data-theme=calm][data-look=path] #view .panel h2:first-of-type{padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid #e5e7eb;font-size:20px}
+[data-theme=calm][data-look=path] #view .lecture-card:hover,[data-theme=calm][data-look=path] #view .game-picker:hover{box-shadow:0 4px 10px rgba(0,0,0,.08);border-color:#d1d5db}
+[data-theme=calm][data-look=path] #view .lecture-card h3{font-size:18px}
+[data-theme=calm][data-look=path] #view .eyebrow{color:#6b7280;font-size:11px;letter-spacing:.06em;font-weight:600}
+[data-theme=calm][data-look=path] #view .square-icon{background:#f3f4f6;color:#374151}
+[data-theme=calm][data-look=path] #view .tag{background:#f3f4f6;color:#374151}
+/* buttons */
+[data-theme=calm][data-look=path] #view .btn{font-size:14px;font-weight:600;border-radius:6px}
+[data-theme=calm][data-look=path] #view .btn.primary{background:#374151;color:#fff;border-color:#374151;padding-left:28px;padding-right:28px}
+[data-theme=calm][data-look=path] #view .btn.primary:hover{background:#1f2937}
+[data-theme=calm][data-look=path] #view .btn.outline{background:#fff;color:#374151;border-color:#d1d5db}
+[data-theme=calm][data-look=path] #view .btn.lime{background:#127369;color:#fff}
+[data-theme=calm][data-look=path] #view .text-btn{color:#127369;font-size:13px;font-weight:600}
+[data-theme=calm][data-look=path] #view .chip{border-radius:6px;border-color:#d1d5db;color:#374151;font-weight:500;font-size:13px}
+[data-theme=calm][data-look=path] #view .chip.active{background:#374151;color:#fff;border-color:#374151}
+[data-theme=calm][data-look=path] #view :is(input,select,textarea,.input-wrap){border-color:#d1d5db;color:#1f2937;border-radius:6px}
+[data-theme=calm][data-look=path] #view :is(input,select,textarea):focus,[data-theme=calm][data-look=path] #view .input-wrap:focus-within{outline:2px solid #127369;outline-offset:1px}
+[data-theme=calm][data-look=path] #view .callout{background:#fff;border:1px solid #e5e7eb;border-left:4px solid #127369;color:#374151}
+[data-theme=calm][data-look=path] #view .callout.peach{border-left-color:#d97706;background:#fffbeb}
+/* mock steps become a lesson-style progress bar */
+[data-theme=calm][data-look=path] #view .mock-steps span{font-size:13px}
+[data-theme=calm][data-look=path] #view .mock-steps span.active{color:#127369;border-color:#127369;font-weight:600}
+[data-theme=calm][data-look=path] #view .lecture-cover{background:#f3f4f6;color:#374151}
+[data-theme=calm][data-look=path] #view .lecture-play{color:#127369}
+
+/* ---------- 4. small screens ---------- */
+@media (max-width:640px){
+ .lx-block,#view .career-hub,#view .learning-launch{padding:16px}
+ [data-theme=calm][data-look=learn] #view .page-heading{padding:20px 18px}
+ [data-theme=calm][data-look=learn] #view .page-heading h1{font-size:25px}
+ [data-theme=calm][data-look=path] #view .page-heading h1{font-size:25px}
+ [data-theme=calm][data-look=path] #view .page-heading p,[data-theme=calm][data-look=learn] #view .page-heading p{font-size:14px}
+}
