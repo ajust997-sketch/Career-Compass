@@ -6,7 +6,7 @@ const overviewRoutes=['overview','government','private','exams','careers','recom
 
 
 renderNav=function(){
- const groups=[['START HERE',['overview','courses']],['LEARN & PRACTISE',['planner','practice','mock','interview','resources','benefits','industry']],['COMMUNITY & OPPORTUNITIES',['community','competitions','jobs','saved']]];
+ const groups=[['START HERE',['overview','courses']],['LEARN & PRACTISE',['planner','practice','mock','papers','interview','resources','benefits','industry']],['COMMUNITY & OPPORTUNITIES',['community','competitions','jobs','saved']]];
  $('#nav').innerHTML=`<a class="nav-link ai-nav-link ${route==='ai'?'active':''}" href="#ai" ${route==='ai'?'aria-current="page"':''}>${icon('spark')}<span><strong data-t="ai">Connect AI</strong><small>Gemini · Claude</small></span></a>`+groups.map(([title,ids],i)=>`<details class="nav-group" ${i===0||ids.includes(route)?'open':''}><summary>${title}</summary>${ids.map(id=>{
   const entry=nav.find(x=>x[0]===id),active=route===id||(id==='overview'&&overviewRoutes.includes(route));
   return `<a class="nav-link ${active?'active':''}" href="#${id}" ${route===id?'aria-current="page"':''}>${icon(entry[2])}<span data-t="${id}">${entry[1]}</span></a>`;
