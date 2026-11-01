@@ -14,8 +14,8 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { build } from "esbuild";
 
-const CLIENT_JS = ["experience.js", "paper-core.js", "next.js", "practice.js", "personal-ai.js", "discovery.js", "papers.js", "layout.js"];
-const CLIENT_CSS = ["app.css", "experience.css", "next.css", "personal-ai.css", "discovery.css", "papers.css", "layout.css"];
+const CLIENT_JS = ["experience.js", "paper-core.js", "next.js", "practice.js", "personal-ai.js", "discovery.js", "papers.js", "photos.js", "layout.js"];
+const CLIENT_CSS = ["app.css", "experience.css", "next.css", "personal-ai.css", "discovery.css", "papers.css", "photos.css", "layout.css"];
 const DATA = ["data.json", "lectures.json", "cutoffs.json", "new-data.json", "paid-courses.json"];
 const SERVER = ["paper-core.js", "community-server.js", "google-auth.js", "ai-server.js", "server.js"];
 
