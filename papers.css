@@ -1,0 +1,20 @@
+/* College previous papers (route #papers). See papers.js. */
+.pp-filters{display:flex;flex-wrap:wrap;gap:10px}
+.pp-filters input{flex:2 1 220px}
+.pp-filters select{flex:1 1 160px}
+.pp-list{display:grid;gap:14px;margin-top:14px}
+.pp-card{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.pp-card h3{margin:8px 0 4px}
+.pp-card p{margin:0 0 4px}
+.pp-text{white-space:pre-wrap;word-break:break-word;max-height:480px;overflow:auto;background:var(--mint,#edf5ef);border-radius:12px;padding:14px;font:inherit;font-size:14px;line-height:1.6}
+.pp-form textarea,.pp-view textarea{width:100%;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+.pp-ai{margin:14px 0;display:block}
+.pp-ai-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.pp-ai-row input{flex:1 1 260px}
+.pp-ai-quick{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.pp-revisions{margin-top:14px}
+.pp-revisions summary{cursor:pointer;font-weight:600}
+.pp-rev{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid var(--line,#e7ebe5)}
+.pp-danger{margin-top:10px}
+.pp-view,.pp-form{margin-bottom:18px}
+@media (max-width:640px){.pp-card .detail-actions{width:100%}.pp-card .detail-actions .btn{flex:1}}
