@@ -95,9 +95,55 @@ window.fetch=async function(input,init){
  return F(input,init)};
 })();`;
 
+// Step-by-step "how to connect" guide shown on the AI page (#ai).
+const GUIDE_HTML = `<details class="panel cc-guide" id="cc-ai-guide">
+<summary><strong>Kaise connect karein? Step-by-step guide</strong> <span class="muted">(click karke kholo)</span></summary>
+<div class="cc-guide-body">
+<h3>Part 1: Gemini API key banao (free)</h3>
+<ol>
+<li>Apne Google account se <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">aistudio.google.com/apikey ↗</a> kholo.</li>
+<li>Pehli baar khologe to terms accept karni padengi.</li>
+<li><b>Create API key</b> dabao. Project poochhe to koi bhi chun lo, ya naya bana lo.</li>
+<li>Jo key bane (<code>AIza…</code> se shuru hoti hai) use <b>Copy</b> kar lo. Ye key kisi ko mat dikhana.</li>
+</ol>
+<h3>Part 2: Login karo aur key jodo</h3>
+<ol start="5">
+<li>Neeche <b>Continue with Google</b> se login karo.</li>
+<li>Upar <b>Connect Gemini</b> card chuno.</li>
+<li>Connection form mein <b>API key</b> wale khaane mein key paste karo. Shuru ya end mein space nahi hona chahiye.</li>
+<li>Consent wala checkbox tick karo. Iska matlab hai ki aapka study data Gemini ko jayega aur usage aapki key par count hoga.</li>
+<li><b>Verify key &amp; connect</b> dabao. "API key verified" ka message aayega, aur key server par encrypted save ho jaati hai.</li>
+</ol>
+<h3>Part 3: Settings chuno</h3>
+<ol start="10">
+<li><b>Model:</b> list mein se chuno. Flash wale models tez hain aur free limit mein zyada chalte hain.</li>
+<li><b>Report language:</b> Hinglish ya English.</li>
+<li><b>Auto analysis:</b> mock paper ya attempt ke baad apne aap report banwani ho to tick karo. Har report mein key ka usage lagega.</li>
+<li><b>Save</b> dabao.</li>
+</ol>
+<h3>Part 4: Use karo</h3>
+<ul>
+<li><b>Learning brief:</b> apna goal aur focus likho (jaise "GATE CSE, DSA weak hai"), consent tick karo, phir submit karo. Report 10-20 second mein ban jaati hai.</li>
+<li><b>Mock paper:</b> "Learn &amp; Practise" mein mock paper do, phir <b>Analyse</b> dabao. Mistakes ka analysis milega.</li>
+<li><b>History:</b> reports neeche "Your AI reports" mein dikhengi. Ye sirf isi browser mein save hoti hain, isliye zaroori report <b>Export</b> se download kar lena.</li>
+</ul>
+<p class="form-help"><b>Claude chahiye to:</b> <b>Connect Claude</b> chuno aur key <a href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener noreferrer">platform.claude.com/settings/keys ↗</a> se banao. Claude ki API free nahi hai, account mein credits dalne padte hain. Workspace ID wala khaana khaali chhod sakte ho.<br><b>Key hatani ho to:</b> <b>Disconnect</b> dabao, key server se delete ho jayegi.</p>
+</div></details>`;
+const GUIDE_SCRIPT = `(()=>{
+const css='.cc-guide summary{cursor:pointer;list-style:revert;padding:2px 0}.cc-guide-body h3{margin:18px 0 6px}.cc-guide-body ol,.cc-guide-body ul{margin:0 0 6px;padding-left:22px}.cc-guide-body li{margin:4px 0}';
+const html=${JSON.stringify(GUIDE_HTML)};
+function place(){
+ const account=document.getElementById('ai-account');
+ if(account&&!document.getElementById('cc-ai-guide')){account.insertAdjacentHTML('beforebegin',html)}
+ const hist=document.querySelector('.ai-history-panel .eyebrow');
+ if(hist&&hist.textContent!=='SAVED ON THIS DEVICE')hist.textContent='SAVED ON THIS DEVICE';
+}
+document.addEventListener('DOMContentLoaded',()=>{const s=document.createElement('style');s.textContent=css;document.head.appendChild(s);place();new MutationObserver(place).observe(document.body,{childList:true,subtree:true})});
+})();`;
+
 async function withDeviceHistory(response) {
   if (!(response.headers.get("content-type") || "").includes("text/html")) return response;
-  const tag = "<script>" + DEVICE_HISTORY + "</script>";
+  const tag = "<script>" + DEVICE_HISTORY + "\n" + GUIDE_SCRIPT + "</script>";
   if (typeof HTMLRewriter !== "undefined") return new HTMLRewriter().on("head", { element(e) { e.prepend(tag, { html: true }); } }).transform(response);
   const html = (await response.text()).replace("<head>", "<head>" + tag);
   return new Response(html, { status: response.status, headers: response.headers });
