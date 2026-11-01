@@ -4,6 +4,18 @@
 // a finished report is copied to the device and then deleted from the server.
 import app from "../worker.js";
 
+// Cloudflare's runtime rejects fetch(..., { redirect: "error" }), which worker.js
+// uses for Google sign-in keys and Gemini/Claude calls. Emulate it with "manual".
+const nativeFetch = globalThis.fetch;
+globalThis.fetch = async (input, init) => {
+  if (init && init.redirect === "error") {
+    const response = await nativeFetch(input, { ...init, redirect: "manual" });
+    if (response.status >= 300 && response.status < 400) throw new TypeError("Unexpected redirect");
+    return response;
+  }
+  return nativeFetch(input, init);
+};
+
 const enc = new TextEncoder();
 const toB64 = (u8) => { let s = ""; for (let i = 0; i < u8.length; i += 32768) s += String.fromCharCode(...u8.subarray(i, i + 32768)); return btoa(s); };
 const fromB64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
