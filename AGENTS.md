@@ -33,7 +33,7 @@ root source files ──node cf/build.mjs──▶ worker.js (+ index.html) ─�
 | Sidebar groups | `discovery.js` (`renderNav`) |
 | College previous papers page (`#papers`) | `papers.js`, `papers.css` |
 | Department photos on course, paid-course and previous-paper cards (free Unsplash images; ids in `DEPT_PHOTOS`, paper subject → department via `DEPT_KEYWORDS`) | `photos.js`, `photos.css` |
-| Page looks + rectangular blocks (loaded last). Overview has no welcome/hero. `LOOK_LEARN` routes get the course-catalogue look (blue, navy title band), `LOOK_PATH` routes (mock, resources, practice) get the learning-path look (gray canvas, slate/teal). Only applies with the calm theme | `layout.js`, `layout.css` |
+| Page looks + rectangular blocks (loaded last). Overview has no welcome/hero. `LOOK_LEARN` routes get the course-catalogue look (blue, navy title band), `LOOK_PATH` routes (mock, resources, practice) get the learning-path look (gray canvas, slate/teal). Applies in every theme | `layout.js`, `layout.css` |
 | Build script (file lists live here) | `cf/build.mjs` |
 | Cloudflare entry point (request router) | `functions/[[path]].js` |
 | Previous papers API (`/api/papers`) | `cf/papers-api.js` |
