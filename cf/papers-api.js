@@ -62,6 +62,10 @@ function sameOrigin(request) {
 }
 
 async function readBody(request, max) {
+  // Only JSON from this site's own scripts (a JSON content type also forces a CORS pre-check for other sites).
+  if (!/^application\/json\b/i.test(request.headers.get("content-type") || "")) throw fail("Send JSON.", 415);
+  const declared = Number(request.headers.get("content-length") || 0);
+  if (declared > max) throw fail("This upload is too large.", 413);
   const text = await request.text();
   if (text.length > max) throw fail("This upload is too large.", 413);
   try { return JSON.parse(text); } catch { throw fail("Send valid JSON."); }
@@ -108,6 +112,10 @@ function decodeFile(file) {
   let bytes;
   try { bytes = Uint8Array.from(atob(String(file.data || "")), (c) => c.charCodeAt(0)); } catch { throw fail("The attached file could not be read."); }
   if (!bytes.length || bytes.length > MAX_FILE) throw fail("Attach a file smaller than 5 MB.", 413);
+  // The file's first bytes must match its declared type (stops renamed or disguised files).
+  const starts = (...sig) => sig.every((b, i) => bytes[i] === b);
+  const real = starts(0x25, 0x50, 0x44, 0x46, 0x2d) ? "application/pdf" : starts(0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a) ? "image/png" : starts(0xff, 0xd8, 0xff) ? "image/jpeg" : null;
+  if (real !== type) throw fail("This file is not a real PDF, PNG or JPG.");
   return { name, type, size: bytes.length, bytes };
 }
 
