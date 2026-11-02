@@ -6,21 +6,43 @@
 //   cf/kv-bucket.js    lets worker.js use free Workers KV (CC_KV) as its storage
 //   cf/papers-api.js   /api/papers - college previous papers
 //   cf/html-inject.js  small scripts added to the main page (device history, AI guide)
+//   cf/security.js     security headers + Content-Security-Policy for every response
 
 import "../cf/fetch-shim.js";
 import app from "../worker.js";
 import { kvBucket } from "../cf/kv-bucket.js";
 import { handlePapers } from "../cf/papers-api.js";
 import { injectSiteScripts } from "../cf/html-inject.js";
+import { pageCSP, withSecurityHeaders, crossSiteWrite } from "../cf/security.js";
+
+// The main page never changes within one deployment, so it (and its CSP) is built once per isolate.
+let mainPage = null;
+async function buildMainPage(request, env, ctx) {
+  const res = await app.fetch(new Request(new URL("/", request.url), { method: "GET" }), env, ctx);
+  if (!res.ok) return null;
+  const html = await (await injectSiteScripts(res)).text();
+  return { html, csp: await pageCSP(html), type: res.headers.get("content-type") || "text/html;charset=utf-8" };
+}
 
 export async function onRequest(context) {
+  return withSecurityHeaders(await route(context));
+}
+
+async function route(context) {
   const env = { ...context.env, BUCKET: context.env.CC_KV ? kvBucket(context.env.CC_KV) : undefined };
   const ctx = { waitUntil: (p) => context.waitUntil(p), passThroughOnException() {} };
   const request = context.request;
   const path = new URL(request.url).pathname;
 
+  if (crossSiteWrite(request)) return Response.json({ error: "Cross-site requests are not allowed." }, { status: 403 });
+
   const papers = await handlePapers(request, env, app);
   if (papers) return papers;
+
+  if ((request.method === "GET" || request.method === "HEAD") && (path === "/" || path === "/index.html")) {
+    mainPage = mainPage || (await buildMainPage(request, env, ctx));
+    if (mainPage) return new Response(request.method === "HEAD" ? null : mainPage.html, { headers: { "content-type": mainPage.type, "cache-control": "public, max-age=60", "content-security-policy": mainPage.csp } });
+  }
 
   // Pages has no cron: refresh the opportunity feed in the background when it
   // is opened (worker.js itself skips sources fetched in the last 6 hours).
@@ -29,5 +51,10 @@ export async function onRequest(context) {
   }
 
   const response = await app.fetch(request, env, ctx);
-  return request.method === "GET" && (path === "/" || path === "/index.html") ? injectSiteScripts(response) : response;
+  if (path.startsWith("/api/") && !response.headers.has("cache-control")) {
+    const res = new Response(response.body, response);
+    res.headers.set("cache-control", "no-store");
+    return res;
+  }
+  return response;
 }
