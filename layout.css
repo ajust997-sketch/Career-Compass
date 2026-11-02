@@ -93,7 +93,11 @@ body[data-look=path] #view .mock-steps span.active{color:#127369;border-color:#1
 body[data-look=path] #view .lecture-cover{background:#f3f4f6;color:#374151}
 body[data-look=path] #view .lecture-play{color:#127369}
 
-/* ---------- 4. small screens ---------- */
+/* ---------- 4. mobile + desktop ---------- */
+/* grid and flex children may shrink below their content width, so nothing pushes the page sideways */
+#view [class*="layout"]>*,#view [class*="grid"]>*,#view .two-fields>*,dialog [class*="grid"]>*{min-width:0}
+#view img,dialog img{max-width:100%}
+#view pre,#view .pp-text{max-width:100%;overflow-x:auto}
 @media (max-width:640px){
  .lx-block,#view .career-hub,#view .learning-launch{padding:16px}
  body[data-look=learn] #view .page-heading{padding:20px 18px;flex-direction:column;align-items:flex-start}
