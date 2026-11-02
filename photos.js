@@ -70,7 +70,9 @@ const DEPT_KEYWORDS=[
 ];
 function deptFor(text){const s=String(text||'').toLowerCase();for(const [k,re] of DEPT_KEYWORDS)if(re.test(s))return k;return 'paper'}
 function deptPhotoUrl(key,w=640,h=360){const p=DEPT_PHOTOS[key]||DEPT_PHOTOS.general;return 'https://images.unsplash.com/'+p[0]+'?w='+w+'&h='+h+'&fit=crop&auto=format&q=70'}
-function deptPhoto(key,cls,w,h){const p=DEPT_PHOTOS[key]||DEPT_PHOTOS.general;return `<img class="dept-photo ${cls||''}" src="${deptPhotoUrl(key,w,h)}" alt="${esc(p[1])}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.remove()">`}
+function deptPhoto(key,cls,w,h){const p=DEPT_PHOTOS[key]||DEPT_PHOTOS.general;return `<img class="dept-photo ${cls||''}" src="${deptPhotoUrl(key,w,h)}" alt="${esc(p[1])}" loading="lazy" decoding="async" referrerpolicy="no-referrer">`}
+// A photo that cannot load is removed, so the card shows its normal design (no inline handlers: the CSP blocks them).
+document.addEventListener('error',e=>{const t=e.target;if(t&&t.classList&&t.classList.contains('dept-photo'))t.remove()},true);
 
 // Which photo belongs to a course, career or exam object (null for anything else).
 function itemPhotoKey(item){
