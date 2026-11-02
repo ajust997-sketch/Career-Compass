@@ -5,7 +5,7 @@
 //   blue accents, unit-style lists. Inspired by Khan Academy course pages; original CSS.
 // - "path" look (mock lab, learning library, practice): gray canvas, white cards with
 //   divided headers, slate/teal buttons. Inspired by The Odin Project paths; original CSS.
-// Looks only apply with the default "calm" theme, so the other themes keep their colours.
+// Looks apply in every theme (calm, Minecraft, Among Us).
 const LOOK_LEARN=['overview','courses','careers','government','private','exams','recommend','cutoffs','papers','planner','industry','interview'];
 const LOOK_PATH=['mock','resources','practice'];
 (function layoutFonts(){
