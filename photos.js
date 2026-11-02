@@ -1,5 +1,5 @@
-// Department photos for courses, careers, exams, recommendations and previous papers:
-// cards, the detail pop-up, the course picker and an opened paper.
+// Department photos for courses, careers, exams, lectures, recommendations and previous papers:
+// cards, the detail pop-up (with related courses / careers / exams), the course picker and an opened paper.
 // Photos are free-licence Unsplash images (https://unsplash.com/license), loaded from
 // Unsplash's CDN. If a photo fails to load, the card keeps its old illustration.
 // To change a photo: replace the id below with another images.unsplash.com "photo-…" id.
@@ -40,6 +40,8 @@ const DEPT_PHOTOS={
 // Careers and exams → which photo to use (courses use their own id).
 const CAREER_DEPT={software:'cse',data:'data',ml:'ai',cyber:'cyber',cloud:'it',ux:'design',product:'bba',research:'research',embedded:'ece',vlsi:'ece',electrical:'ee',mechanical:'me',civileng:'civil',finance:'bcom',ca:'bcom',marketing:'marketing',lawyer:'law',pharmacist:'pharma',nurse:'nursing',doctor:'mbbs',agritech:'agri',hospitalitycareer:'hospitality',public:'government',bioindustry:'bio'};
 const EXAM_DEPT={gate:'gate',cat:'bba',jam:'science',nimcet:'bca',cuet:'arts',upsc:'government',ssc:'government',bank:'bcom',ese:'ee',psu:'ece',cmat:'bba',net:'research',caexam:'bcom',aibe:'law',medical:'mbbs',gpat:'pharma',gre:'abroad'};
+// Free lecture sources → photo of their subject (no channel logos or thumbnails).
+const LECTURE_DEPT={nptel:'gate',nptelgate:'gate',cs50:'cse',freecodecamp:'bscs',mit:'research',campusx:'ai',statquest:'data',threeblue:'math',gatesmashers:'bca',neso:'ece',figma:'design',icai:'bcom',cec:'arts',ncertvideo:'science',icarvideo:'agri',ibiology:'bio',nursingvideo:'nursing',stanfordmedical:'mbbs',rodha:'bba',adda:'government',drishti:'government',sathee:'paper',toeflvideo:'abroad',hubspotvideo:'marketing'};
 const PAID_COURSE_DEPT={'python-angela':'bca','web-hitesh':'bscs','ml-andrew':'ai','figma-daniel':'design'};
 // Keyword → department, checked in order (first match wins).
 const DEPT_KEYWORDS=[
@@ -130,4 +132,39 @@ ppPaintPanel=function(){
  const view=$('#pp-panel .pp-view');if(!view||!ppOpen||view.querySelector('.dept-photo'))return;
  const key=deptFor([ppOpen.subject,ppOpen.branch,ppOpen.course,ppOpen.title].join(' '));
  view.insertAdjacentHTML('afterbegin',deptPhoto(key,'pp-view-photo',1000,300));
+};
+
+// Free lecture cards (learning library and the "Free lectures" part of every detail pop-up)
+const photosPreviousLectureCards=lectureCards;
+lectureCards=function(ids){
+ const html=photosPreviousLectureCards(ids);const list=(ids||[]).filter(id=>D.lectureSources[id]);
+ const parts=html.split('<div class="lecture-cover">');
+ return parts.map((part,i)=>{if(!i)return part;const id=list[i-1];const key=LECTURE_DEPT[id]||'general';return '<div class="lecture-cover has-photo">'+deptPhoto(key,'',640,280)+part}).join('');
+};
+
+// Small photo cards used inside the detail pop-up
+function photoMini(kind,item,key,sub){return `<button class="photo-mini" data-${kind}="${esc(item.id)}">${deptPhoto(key,'',320,180)}<span><strong>${esc(item.name)}</strong>${sub?`<small>${esc(sub)}</small>`:''}</span></button>`}
+
+// Course pop-up: careers it leads to and its exams get photos
+const photosPreviousCourseDetail=courseDetail;
+courseDetail=function(id){
+ let html=photosPreviousCourseDetail(id);
+ html=html.replace(/<button data-career="([^"]+)"><span class="square-icon">[\s\S]*?<\/span>/g,(m,cid)=>{const key=CAREER_DEPT[cid];return key?`<button data-career="${cid}" class="has-photo">`+deptPhoto(key,'path-photo',160,120):m});
+ html=html.replace(/<button class="chip" data-exam="([^"]+)">/g,(m,eid)=>{const key=EXAM_DEPT[eid];return key?`<button class="chip photo-chip" data-exam="${eid}">`+deptPhoto(key,'chip-photo',80,80):m});
+ return html;
+};
+
+// Career pop-up: courses that lead here and exams for this path, with photos
+const photosPreviousCareerDetail=careerDetail;
+careerDetail=function(id,tab='overview'){
+ const html=photosPreviousCareerDetail(id,tab);const c=D.careers.find(x=>x.id===id);
+ if(!c||tab!=='overview')return html;
+ const courses=D.programs.filter(p=>(c.programs||[]).includes(p.id));
+ const exams=D.exams.filter(e=>(e.relatedCareers||[]).includes(id));
+ let extra='';
+ if(courses.length)extra+=`<h3>Courses that lead here</h3><div class="photo-mini-grid">${courses.map(p=>photoMini('course',p,p.id,p.group)).join('')}</div>`;
+ if(exams.length)extra+=`<h3>Exams for this path</h3><div class="photo-mini-grid">${exams.map(e=>photoMini('exam',e,EXAM_DEPT[e.id]||'paper',e.category)).join('')}</div>`;
+ if(!extra)return html;
+ const at=html.indexOf('<h3>References behind this guide</h3>');
+ return at>-1?html.slice(0,at)+extra+html.slice(at):html;
 };
