@@ -41,6 +41,7 @@ root source files ──node cf/build.mjs──▶ worker.js (+ index.html) ─�
 | Free KV storage adapter used as `env.BUCKET` | `cf/kv-bucket.js` |
 | Fix for `fetch(..., {redirect:"error"})` on Cloudflare | `cf/fetch-shim.js` |
 | Scripts injected into the page (AI history on device, AI connect guide) | `cf/html-inject.js` |
+| Security headers, Content-Security-Policy (inline scripts allowed only by hash), cross-site write guard | `cf/security.js` |
 
 ### Front-end conventions
 - All front-end modules share the scope of `app.js`. Useful helpers: `$`, `$$`, `esc` (always escape
@@ -92,6 +93,10 @@ For a full local run use Miniflare/Wrangler with a KV namespace bound as `CC_KV`
 - Do not commit secrets, API keys or `.env` files. Users' AI keys are stored encrypted server-side.
 - Do not remove the sign-in, same-origin or rate-limit checks.
 - Do not use `fetch` option `redirect: "error"` without `cf/fetch-shim.js` (Cloudflare rejects it).
+- Do not use inline event handlers (`onclick="…"`, `onerror="…"`) or `eval`: the CSP blocks them. Use
+  `addEventListener`. A new outside service (script, image, font, iframe, API) must be added to `SOURCES`
+  in `cf/security.js`, or the browser will block it.
+- Do not weaken the CSP with `'unsafe-inline'` or `'unsafe-eval'` for scripts.
 
 ## Legacy files (not used by the live site)
 `src/` and `scripts/` (old v4 copies), `worker/`, `portable/`, `standalone/`, `.openai/`,
