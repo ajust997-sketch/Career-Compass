@@ -13,7 +13,8 @@ const SOURCES = {
   script: [
     "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/",
     "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/",
-    "https://cdn.jsdelivr.net/npm/tesseract.js-core@",
+    "https://cdn.jsdelivr.net/npm/tesseract.js@v5.1.1/",
+    "https://cdn.jsdelivr.net/npm/tesseract.js-core@v5.1.1/",
     "https://translate.google.com/translate_a/",
     "https://translate.googleapis.com",
     "https://translate-pa.googleapis.com",
